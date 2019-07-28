@@ -7,7 +7,7 @@ int ComparaInserir (void* parametro1, void* parametro2);
 int ComparaBusca (void* parametro1, void* parametro2);
 void PreencherLista(FILE* grafo, int vertices, Lista* listaCandidatos);
 void ColorirVertices(Lista* listaCandidatos);
-int Adjacente(Lista* listaCor, Node* noComparar);
+int Adjacente(Lista* listaCor, void* noComparar);
 void ImprimirCor(void* PontDados);
 void AtualizarListaCandidatos(Lista* listaCandidatos, Lista* listaCor);
 int RemoverNoColorido(Lista* lista, void* PDados);
@@ -99,21 +99,21 @@ void PreencherLista(FILE* grafo, int vertices, Lista* listaCandidatos){
 
 void ColorirVertices(Lista* listaCandidatos){
 	int qVertices;
-	Node *primeiroNo, *noAtual;
+	Node *noAtual;
 	Lista* listaCor;
 
 	// Verifica se a lista de candidatos tem elementos
-	if(qVertices = _contagemLista(listaCandidatos)){
+	if(qVertices = ContagemLista(listaCandidatos)){
 		listaCor = CriarLista(ComparaInserir, ComparaBusca);
 		// Insere o primeiro vértice dos candidatos na lista da cor
-		primeiroNo = noAtual = listaCandidatos->primeiroNo; 
-		AdicionarNo(listaCor, primeiroNo->PontDados);
+		noAtual = listaCandidatos->primeiroNo; 
+		AdicionarNo(listaCor, noAtual->PontDados);
 		
 		// Percorre a lista de candidatos procurando vértices não adjacentes 
 		// aos vértices já inseridos na lista de cor
 		for (int i = 1; i < qVertices; i++){
 			 noAtual = noAtual->proximo;
-			 if(!Adjacente(listaCor, noAtual)){
+			 if(!Adjacente(listaCor, noAtual->PontDados)){
 			 	AdicionarNo(listaCor, noAtual->PontDados);			 	
 			 }
 		}
@@ -131,10 +131,10 @@ void ColorirVertices(Lista* listaCandidatos){
 }
 
 // Verifica se um vértice é adjacente a algum vértice da lista
-int Adjacente(Lista* listaCor, Node* noComparar){
+int Adjacente(Lista* listaCor, void* noComparar){
 	int *vertice, *verticeComp, indiceComp;
-	int tamLista = _contagemLista(listaCor);
-	verticeComp = (int*)(noComparar->PontDados);
+	int tamLista = ContagemLista(listaCor);
+	verticeComp = (int*)(noComparar);
 	indiceComp = verticeComp[0];
 	Node* noAtual = listaCor->primeiroNo;
 
@@ -156,7 +156,7 @@ void ImprimirCor(void* PontDados){
 
 // Remove vértices já coloridos da lista de candidatos
 void AtualizarListaCandidatos(Lista* listaCandidatos, Lista* listaCor){
-	int tamLista = _contagemLista(listaCor);
+	int tamLista = ContagemLista(listaCor);
 	Node* noAtual = listaCor->primeiroNo;
 
 	for (int i = 0; i < tamLista; i++){

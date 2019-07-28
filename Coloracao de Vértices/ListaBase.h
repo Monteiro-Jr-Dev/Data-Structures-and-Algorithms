@@ -26,13 +26,14 @@ int AdicionarNo(Lista* lista, void* ponteiroDados);
 void* RemoverNo(Lista* lista, void* PDados);
 void AtravessarLista(Lista* lista, void (*Funcao)(void* PtrDados));
 void AdicionarNoOrdenado(Lista* lista, void* ponteiroDados);
+int ListaVazia(Lista* lista);
+int ContagemLista(Lista* lista);
 
 int _procurarPosicaoNo(Lista* lista, void* dadoBuscar);			//Retorna posiçao do nó na lista
 Node* _procurarNoAnterior(Lista* lista, int posicao);			//Retorna o ponteiro para o nó anterior ao selecionado
 Node* _procurarUltimoNo(Lista* lista);
 void _destruirNo(Node* no);
-int _listaVazia(Lista* lista);
-int _contagemLista(Lista* lista);
+
 
 
 Lista* CriarLista(int (*ComparaInserir)(void* parametro1, void* parametro2),
@@ -48,7 +49,7 @@ Lista* CriarLista(int (*ComparaInserir)(void* parametro1, void* parametro2),
 void DestruirLista(Lista* lista){
 
 	// Verifica se a lista está vazia
-	if(!_listaVazia(lista)){
+	if(!ListaVazia(lista)){
 		Node *no, *proximoNo;
 		no = lista->primeiroNo;
 
@@ -70,7 +71,7 @@ int AdicionarNo(Lista* lista, void* ponteiroDados){
 	novoNo->PontDados = ponteiroDados;
 	novoNo->proximo = NULL;	
 
-	if(_contagemLista(lista) == 0){
+	if(ListaVazia(lista)){
 		 lista->primeiroNo = novoNo;
 
 	} else{
@@ -120,12 +121,12 @@ void AdicionarNoOrdenado(Lista* lista, void* ponteiroDados){
 	novoNo->proximo = NULL;
 	(lista->cont)++;
 	
-	int tamLista = _contagemLista(lista);
+	int tamLista = ContagemLista(lista);
 	Node* noAtual = lista->primeiroNo;
 	Node* noAnterior = NULL;
 
 	//Se a lista está vazia 
-	if(_contagemLista(lista) == 1){
+	if(ContagemLista(lista) == 1){
 		 lista->primeiroNo = novoNo;	
 	} else {	
 	
@@ -160,7 +161,7 @@ void AdicionarNoOrdenado(Lista* lista, void* ponteiroDados){
 
 // Executa a função passada no parâmetro em todos os nós
 void AtravessarLista(Lista* lista, void (*Funcao)(void* PtrDados)){
-	int tamLista = _contagemLista(lista);
+	int tamLista = ContagemLista(lista);
 	Node* noAtual = lista->primeiroNo;
 	for (int i = 0; i < tamLista; i++){
 		// Executa a função em todos os nós
@@ -172,7 +173,7 @@ void AtravessarLista(Lista* lista, void (*Funcao)(void* PtrDados)){
 int _procurarPosicaoNo(Lista* lista, void* dadoBuscar){	
 	Node* noAtual = lista->primeiroNo;
 	Node* noAnterior = NULL;
-	int tamLista = _contagemLista(lista);
+	int tamLista = ContagemLista(lista);
 
 	if(tamLista > 0){
 		for(int i = 1; i <= tamLista; i++){
@@ -200,7 +201,7 @@ Node* _procurarNoAnterior(Lista* lista, int posicao){
 }
 
 Node* _procurarUltimoNo(Lista* lista){
-	int tamLista = _contagemLista(lista);
+	int tamLista = ContagemLista(lista);
 	Node* noAnterior = _procurarNoAnterior(lista, tamLista);
 	if(noAnterior == NULL) //Se só tiver um nó na lista
 		return (lista->primeiroNo); 
@@ -214,15 +215,15 @@ void _destruirNo(Node* no){
 }
 
 
-int _listaVazia(Lista* lista){
-	if(_contagemLista(lista) == 0){
+int ListaVazia(Lista* lista){
+	if(ContagemLista(lista) == 0){
 		return 1;
 	} else{
 		return 0;
 	}
 }
 
-int _contagemLista(Lista* lista){
+int ContagemLista(Lista* lista){
 	return lista->cont;
 }
 
