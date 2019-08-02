@@ -1,3 +1,7 @@
+/*IFF Campos
+* Estruturas de Dados Avançada
+* Alunos: Valmir, Israel e José Gustavo
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "ListaBase.h"
@@ -75,13 +79,11 @@ void PreencherLista(FILE* grafo, int vertices, Lista* listaCandidatos){
 	for (int i = 0; i < vertices; i++){
 		grauVertice = 0;
 
-		//Criar vetores que formam a lista
-		int* vetor = (int*) malloc(sizeof(int) * (vertices + 2));
-		
-		
+		//Cria vetores que formam a lista
+		int* vetor = (int*) malloc(sizeof(int) * (vertices + 2));		
 
 		for(int j = 0; j < vertices; j++){
-			// Offset de 2 pois as duas primeiras posições do vetor são reservadas para armazenar o índice e grau
+			// Offset de 2, pois as duas primeiras posições do vetor são reservadas para armazenar o índice e grau
 			fscanf(grafo, "%i", &vetor[j + 2]);
 			if(vetor[j + 2] == 1){
 				grauVertice++;

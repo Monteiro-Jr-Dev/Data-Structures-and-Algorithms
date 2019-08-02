@@ -36,8 +36,7 @@ void _destruirNo(Node* no);
 
 
 
-Lista* CriarLista(int (*ComparaInserir)(void* parametro1, void* parametro2),
-	int (*ComparaBusca)(void* parametro1, void* parametro2)){
+Lista* CriarLista(int (*ComparaInserir)(void* parametro1, void* parametro2), int (*ComparaBusca)(void* parametro1, void* parametro2)){
 	Lista* lista = (Lista*) malloc(sizeof(Lista));
 	lista->cont = 0;
 	lista->primeiroNo = NULL;
@@ -111,7 +110,7 @@ void* RemoverNo(Lista* lista, void* PDados){
 	free(no);
 	(lista->cont)--;
 
-	return dadoNo; //retorna true	
+	return dadoNo; //retorna ponteiro dado	
 }
 
 void AdicionarNoOrdenado(Lista* lista, void* ponteiroDados){
@@ -135,7 +134,7 @@ void AdicionarNoOrdenado(Lista* lista, void* ponteiroDados){
 			// Usa a função de comparação para determinar onde inserir o novo nó
 			int retorno = (* lista->ComparaInserir)(ponteiroDados, dadoComparar);
 
-			// Inserir se novoNo > noAtual
+			// Inserir nó se a condição de inserção for atendida 
 			if(retorno == 1){
 				// Se for primeiro nó, inserir no cabeçalho
 				if(i == 1){ 
@@ -153,13 +152,13 @@ void AdicionarNoOrdenado(Lista* lista, void* ponteiroDados){
 			noAnterior = noAtual;
 			noAtual = noAtual->proximo;
 		}
-		// Inserir novoNo no final da lista se for menor (ou igual) ao último nó
+		// Inserir novoNo no final da se a condição de inserção não for atendida
 		noAnterior->proximo = novoNo;
 	}	
 	
 }
 
-// Executa a função passada no parâmetro em todos os nós
+// Executa a função passada em todos os nós
 void AtravessarLista(Lista* lista, void (*Funcao)(void* PtrDados)){
 	int tamLista = ContagemLista(lista);
 	Node* noAtual = lista->primeiroNo;
