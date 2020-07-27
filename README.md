@@ -4,7 +4,7 @@ Repo for algorithms and data structures study.
 
 ## Data Structures
 |Data Structure &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| 6502 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | C &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | C# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | C++ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
-|---|---|---|---|
+|---|---|---|---|---|
 | List | | | | |
 | List (Ordered) | | | | |
 | Stack | | | | |
@@ -13,7 +13,7 @@ Repo for algorithms and data structures study.
 
 ## Algorithms
 |Algorithm &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| 6502 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | C &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | C# &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | C++ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
-|---|---|---|---|
+|---|---|---|---|---|
 | Bubblesort | | | | |
 | Quicksort | | | | |
 | Graph Coloring (Greedy) | | | | |
